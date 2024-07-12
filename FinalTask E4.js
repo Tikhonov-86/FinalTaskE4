@@ -32,40 +32,42 @@ console.log(empty());
 
 // Task 4
 
-function Device(){
-    this.pluggedIn = function () {
+function Device() {
+    this._isPluggedIn = false;
+    this.pluggedIn = function (state) {
+        if (state !== undefined) {
+            this._isPluggedIn = state;
+        }
         return this._isPluggedIn;
     };
-};
+}
 
-function Fridge(name, brand, capacity, color, nofrost, power){
-    this.name = name,
-    this.brand = brand,
-    this.capacity = capacity,
-    this.color = color,
-    this.nofrost = nofrost,
-    this.power = power,
-    this._isPluggedIn = false; // Добавляем свойство _isPluggedIn и инициализируем его значением false
-};
+function Fridge(name, brand, capacity, color, nofrost, power) {
+    this.name = name;
+    this.brand = brand;
+    this.capacity = capacity;
+    this.color = color;
+    this.nofrost = nofrost;
+    this.power = power;
+}
 
-function Kettle(name, brand, capacity, color, material, power){
-    this.name = name,
-    this.brand = brand,
-    this.capacity = capacity,
-    this.color = color,
-    this.material = material,
-    this.power = power,
-    this._isPluggedIn = false; // Добавляем свойство _isPluggedIn и инициализируем его значением false
-};
+function Kettle(name, brand, capacity, color, material, power) {
+    this.name = name;
+    this.brand = brand;
+    this.capacity = capacity;
+    this.color = color;
+    this.material = material;
+    this.power = power;
+}
 
-Fridge.prototype = new Device()
-Kettle.prototype = new Device()
+Fridge.prototype = new Device();
+Kettle.prototype = new Device();
 
-const fridge = new Fridge('Fridge', 'Indesit', 250, 'white', true, 590)
-const kettle = new Kettle('Kettle', 'Bork', 1.5, 'black', 'metal&glass', 2400)
+const fridge = new Fridge('Fridge', 'Indesit', 250, 'white', true, 590);
+const kettle = new Kettle('Kettle', 'Bork', 1.5, 'black', 'metal&glass', 2400);
 
-console.log(fridge)
-console.log(kettle)
+console.log(fridge);
+console.log(kettle);
 
 function sumPowerAllDevices(...devices) {
     let sumPower = 0;
@@ -84,3 +86,57 @@ kettle.pluggedIn(true); // Устанавливаем значение _isPlugge
 
 const sumPower = sumPowerAllDevices(fridge, kettle);
 console.log(`Sum power all devices is ${sumPower} w`);
+
+// Task 5
+
+class Device {
+    constructor(name, brand, capacity, color, material, power) {
+        this.name = name;
+        this.brand = brand;
+        this.capacity = capacity;
+        this.color = color;
+        this.material = material;
+        this.power = power;
+        this.isPlugged = false;
+    }
+
+    turnOn() {
+        console.log(`Oh, ${this.name} is turned on!`);
+        this.isPlugged = true;
+    }
+
+    turnOff() {
+        console.log(`Yeah, ${this.name} is turned off!`);
+        this.isPlugged = false;
+}
+
+
+class Fridge extends Device {
+    constructor(name, brand, capacity, color, material, power) {
+        super(name, power);
+        this.brand = brand;
+        this.capacity = capacity;
+        this.color = color;
+        this.material = material;
+        this.power = power;
+        this.isPlugged = false;
+    }
+}
+
+class Kettle extends Device {
+    constructor(name, brand, capacity, color, material, power) {
+        super(name, power);
+        this.brand = brand;
+        this.capacity = capacity;
+        this.color = color;
+        this.material = material;
+        this.power = power;
+        this.isPlugged = false;
+    }
+}
+
+const fridge1= new Fridge('Fridge', 'Indesit', 250, 'white', true, 590);
+const kettle1 = new Kettle('Kettle', 'Bork', 1.5, 'black', 'metal&glass', 2400);
+
+fridge1.turnOn();
+kettle1.turnOn();
