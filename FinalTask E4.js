@@ -88,7 +88,6 @@ const sumPower = sumPowerAllDevices(fridge, kettle);
 console.log(`Sum power all devices is ${sumPower} w`);
 
 // Task 5
-
 class Device {
     constructor(name, brand, capacity, color, material, power) {
         this.name = name;
@@ -99,44 +98,31 @@ class Device {
         this.power = power;
         this.isPlugged = false;
     }
-
     turnOn() {
-        console.log(`Oh, ${this.name} is turned on!`);
+        console.log(`Yeah, ${this.name} is turned on!`);
         this.isPlugged = true;
     }
-
     turnOff() {
-        console.log(`Yeah, ${this.name} is turned off!`);
+        console.log(`Oh, ${this.name} is turned off!`);
         this.isPlugged = false;
+    }
 }
-
 
 class Fridge extends Device {
     constructor(name, brand, capacity, color, material, power) {
-        super(name, power);
-        this.brand = brand;
-        this.capacity = capacity;
-        this.color = color;
-        this.material = material;
-        this.power = power;
-        this.isPlugged = false;
+        super(name, brand, capacity, color, material, power);
     }
 }
 
 class Kettle extends Device {
     constructor(name, brand, capacity, color, material, power) {
-        super(name, power);
-        this.brand = brand;
-        this.capacity = capacity;
-        this.color = color;
-        this.material = material;
-        this.power = power;
-        this.isPlugged = false;
+        super(name, brand, capacity, color, material, power);
     }
 }
 
-const fridge1= new Fridge('Fridge', 'Indesit', 250, 'white', true, 590);
+const fridge1 = new Fridge('Fridge', 'Indesit', 250, 'white', 'metal', 590);
 const kettle1 = new Kettle('Kettle', 'Bork', 1.5, 'black', 'metal&glass', 2400);
 
 fridge1.turnOn();
 kettle1.turnOn();
+
