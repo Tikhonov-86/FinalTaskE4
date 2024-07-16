@@ -25,7 +25,7 @@ twoTypeFunc('message', f);
 // Task 3
 
 function empty() {
-    return Object = {};
+    return Object.create(null);
 }
 
 console.log(empty());
